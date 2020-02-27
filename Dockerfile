@@ -24,4 +24,6 @@ RUN echo 'deb [arch=amd64] https://download.docker.com/linux/debian buster stabl
 RUN apt-get update && apt-get install docker-ce -y --no-install-recommends
 WORKDIR /var/lib/ocurrent
 ENTRYPOINT ["dumb-init", "/usr/local/bin/ocurrent-deployer"]
+COPY config/ssh /root/.ssh
+COPY config/docker /root/.docker
 COPY --from=build /src/_build/install/default/bin/ocurrent-deployer /usr/local/bin/
